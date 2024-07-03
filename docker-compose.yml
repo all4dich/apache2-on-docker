@@ -1,0 +1,15 @@
+version: '3'
+services:
+  httpd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./certs:/etc/apache2/certs
+      - ./sites-enabled/site-sunjoo.conf:/etc/apache2/sites-enabled/site-sunjoo.conf
+    environment:
+      - APACHE_CONFDIR=/etc/apache2
+#2024-07-03 14:11:41 apache2: Syntax error on line 80 of /etc/apache2/apache2.conf: DefaultRuntimeDir must be a valid directory, absolute or relative to ServerRoot
